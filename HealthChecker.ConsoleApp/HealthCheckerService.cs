@@ -110,8 +110,8 @@ namespace HealthChecker.ConsoleApp
 
             try
             {
-                var response = (HttpWebResponse)webRequest.GetResponse();
-                return (int)response.StatusCode < 400;
+                using (var response = (HttpWebResponse)webRequest.GetResponse())
+                    return (int)response.StatusCode < 400;
             }
             catch
             {
